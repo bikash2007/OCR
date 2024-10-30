@@ -2,14 +2,14 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import {  createHashRouter, RouterProvider } from 'react-router-dom'
 import HomePage from './components/HomePage.jsx'
 import TableExtantion from './components/Table extention/TableExtantion.jsx'
 import DocumentConverter from './components/pdf to doc/DocumentConverter.jsx'
 import ImageConverter from './components/pdf to image/ImageConverter.jsx'
 import ImgDocConverter from './components/img to doc/ImgDocConverter.jsx'
 import OcrConverter from './components/OCR/OcrConverter.jsx'
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     element: <App />, path: '/', children: [
       { path: '/', element: <HomePage /> },
