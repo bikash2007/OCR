@@ -29,7 +29,7 @@ const ImgDocConverter = () => {
       formData.append("image", selectedImage);
 
       const response = await axios.post(
-        'http://192.168.1.68:8000/api/convert-doc/', // Replace with the actual endpoint
+        'https://ocr.goodwish.com.np/api/convert-doc/', // Replace with the actual endpoint
         formData,
         {
           headers: {
@@ -39,7 +39,7 @@ const ImgDocConverter = () => {
         }
       );
 
-      const baseUrl = 'http://192.168.1.68:8000'; // Ensure this matches your server's base URL
+      const baseUrl = 'https://ocr.goodwish.com.np'; // Ensure this matches your server's base URL
       const fileUrl = `${baseUrl}${response.data.document}`; // Construct the full URL
       setConvertedFileUrl(fileUrl);
     } catch (error) {

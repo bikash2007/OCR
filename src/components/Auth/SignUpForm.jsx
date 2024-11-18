@@ -88,7 +88,7 @@ const SignUpForm = ({ setIsLogin}) => {
       });
 
       try {
-        const response = await axios.post('http://192.168.1.68:8000/api/users/', payload, {
+        const response = await axios.post('http://ocr.goodwish.com.np/api/users/', payload, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
         alert('User signed up successfully , check the email to confirm');
@@ -104,121 +104,166 @@ const SignUpForm = ({ setIsLogin}) => {
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2, textAlign: 'center' }}>
-      <Avatar
-        src={photoPreview}
-        sx={{ width: 80, height: 80, margin: '0 auto', mb: 2 }}
-      />
-      <Typography variant="body1" color="textSecondary" sx={{ mb: 1 }}>
-        Upload Profile Picture
+    <Box
+    component="form"
+    onSubmit={handleSubmit}
+    sx={{
+      mt: 3,
+      textAlign: 'center',
+      px: 2,
+      py: 4,
+      borderRadius: 2,
+      boxShadow: 3,
+      backgroundColor: 'white',
+      maxWidth: '400px',
+      maxHeight: 'auto',
+      margin: '0 auto',
+    }}
+  >
+    <Avatar
+      src={photoPreview}
+      sx={{ width: 90, height: 90, margin: '0 auto', mb: 3, border: '2px solid #1976d2' }}
+    />
+    <Typography variant="h6" sx={{ mb: 1, fontWeight: 'bold', color: 'text.primary' }}>
+      Upload Profile Picture
+    </Typography>
+    <Input
+      fullWidth
+      type="file"
+      name="photo"
+      onChange={handleFileChange}
+      sx={{ mb: 1, borderRadius: '8px', border: '1px solid #ddd' }}
+    />
+  
+    <TextField
+      fullWidth
+      label="Username"
+      variant="outlined"
+      margin="normal"
+      name="username"
+      value={formData.username}
+      onChange={handleChange}
+      error={!!errors.username}
+      helperText={errors.username}
+      required
+      sx={{ mb:0 }}
+    />
+  
+    <TextField
+      fullWidth
+      label="Email"
+      variant="outlined"
+      margin="normal"
+      name="email"
+      type="email"
+      value={formData.email}
+      onChange={handleChange}
+      error={!!errors.email}
+      helperText={errors.email}
+      required
+      sx={{ mb:0 }}
+    />
+  
+    <TextField
+      fullWidth
+      label="Password"
+      variant="outlined"
+      margin="normal"
+      name="password"
+      type="password"
+      value={formData.password}
+      onChange={handleChange}
+      error={!!errors.password}
+      helperText={errors.password}
+      required
+      sx={{ mb:0 }}
+    />
+  
+    <TextField
+      fullWidth
+      label="Confirm Password"
+      variant="outlined"
+      margin="normal"
+      name="confirmPassword"
+      type="password"
+      value={formData.confirmPassword}
+      onChange={handleChange}
+      error={!!errors.confirmPassword}
+      helperText={errors.confirmPassword}
+      required
+      sx={{ mb:0 }}
+    />
+  
+    <TextField
+      fullWidth
+      label="First Name"
+      variant="outlined"
+      margin="normal"
+      name="first_name"
+      value={formData.first_name}
+      onChange={handleChange}
+      error={!!errors.first_name}
+      helperText={errors.first_name}
+      required
+      sx={{ mb:0 }}
+    />
+  
+    <TextField
+      fullWidth
+      label="Last Name"
+      variant="outlined"
+      margin="normal"
+      name="last_name"
+      value={formData.last_name}
+      onChange={handleChange}
+      error={!!errors.last_name}
+      helperText={errors.last_name}
+      required
+      sx={{ mb:0 }}
+    />
+  
+    <TextField
+      fullWidth
+      label="Contact"
+      variant="outlined"
+      margin="normal"
+      name="contact"
+      value={formData.contact}
+      onChange={handleChange}
+      error={!!errors.contact}
+      helperText={errors.contact}
+      required
+      sx={{ mb:0 }}
+    />
+  
+    {signUpError && (
+      <Typography color="error" variant="body2" sx={{ mt: 1, fontWeight: 'bold' }}>
+        {signUpError}
       </Typography>
-      <Input fullWidth type="file" name="photo" onChange={handleFileChange} sx={{ mb: 2 }} />
-
-      <TextField
-        fullWidth
-        label="Username"
-        variant="outlined"
-        margin="normal"
-        name="username"
-        value={formData.username}
-        onChange={handleChange}
-        error={!!errors.username}
-        helperText={errors.username}
-        required
-      />
-      <TextField
-        fullWidth
-        label="Email"
-        variant="outlined"
-        margin="normal"
-        name="email"
-        type="email"
-        value={formData.email}
-        onChange={handleChange}
-        error={!!errors.email}
-        helperText={errors.email}
-        required
-      />
-      <TextField
-        fullWidth
-        label="Password"
-        variant="outlined"
-        margin="normal"
-        name="password"
-        type="password"
-        value={formData.password}
-        onChange={handleChange}
-        error={!!errors.password}
-        helperText={errors.password}
-        required
-      />
-      <TextField
-        fullWidth
-        label="Confirm Password"
-        variant="outlined"
-        margin="normal"
-        name="confirmPassword"
-        type="password"
-        value={formData.confirmPassword}
-        onChange={handleChange}
-        error={!!errors.confirmPassword}
-        helperText={errors.confirmPassword}
-        required
-      />
-      <TextField
-        fullWidth
-        label="First Name"
-        variant="outlined"
-        margin="normal"
-        name="first_name"
-        value={formData.first_name}
-        onChange={handleChange}
-        error={!!errors.first_name}
-        helperText={errors.first_name}
-        required
-      />
-      <TextField
-        fullWidth
-        label="Last Name"
-        variant="outlined"
-        margin="normal"
-        name="last_name"
-        value={formData.last_name}
-        onChange={handleChange}
-        error={!!errors.last_name}
-        helperText={errors.last_name}
-        required
-      />
-      <TextField
-        fullWidth
-        label="Contact"
-        variant="outlined"
-        margin="normal"
-        name="contact"
-        value={formData.contact}
-        onChange={handleChange}
-        error={!!errors.contact}
-        helperText={errors.contact}
-        required
-      />
-      
-      {signUpError && (
-        <Typography color="error" variant="body2" sx={{ mt: 1 }}>
-          {signUpError}
-        </Typography>
-      )}
-      
-      <Button
-        fullWidth
-        variant="contained"
-        color="primary"
-        type="submit"
-        sx={{ mt: 2, py: 1.2 }}
-        disabled={isLoading}
-      >
-        {isLoading ? "Signing up..." : "Sign Up"}
-      </Button>
-    </Box>
+    )}
+  
+    <Button
+      fullWidth
+      variant="contained"
+      color="primary"
+      type="submit"
+      sx={{
+        mt: 3,
+        py: 1.5,
+        textTransform: 'none',
+        fontWeight: 'bold',
+        boxShadow: 2,
+        '&:hover': {
+          boxShadow: 6,
+          backgroundColor: 'primary.dark',
+        },
+      }}
+      disabled={isLoading}
+    >
+      {isLoading ? "Signing up..." : "Sign Up"}
+    </Button>
+  </Box>
+  
   );
 };
 
